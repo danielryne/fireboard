@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Station 1"
+  },
+  {
+    "id": 2, 
+    "name": "Station 2"
+  },
+  {
+    "id": 3,
+    "name": "Station 3"
+  },
+  {
+    "id": 4,
+    "name": "Station 4"
+  },
+  {
+    "id": 5,
+    "name": "Station 5"
+  },
+  {
+    "id": 6,
+    "name": "Station 6"
+  },
+  {
+    "id": 7,
+    "name": "Station 7"
+  },
+  {
+    "id": 8,
+    "name": "Station 8"
+  },
+  {
+    "id": 9,
+    "name": "Station 9"
+  }
+]

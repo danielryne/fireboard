@@ -1,0 +1,20 @@
+/* Governs the look and feel (reactions) of each card */
+
+.firestation {
+  border: 4px black;
+  width: 130px;
+  height: 130px;
+  margin: 15px;
+  box-shadow: 4px 4px 10px grey;
+  transition: all .1s ease-in-out;
+}
+
+
+.firestation:hover {
+  box-shadow: 8px 8px 20px gray;
+  transform: scale(1.1);
+}
+
+.firestation:active {
+  transform: translate(1px, 1px);
+}
