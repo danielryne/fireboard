@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+// !! need to change this entirely !! - James//
 const bookSchema = new Schema({
   title: { type: String, required: true },
   author: { type: String, required: true },
@@ -8,6 +8,6 @@ const bookSchema = new Schema({
   date: { type: Date, default: Date.now }
 });
 
-const Book = mongoose.model("Book", bookSchema);
+const FireStation = mongoose.model("FireStation", fireStationSchema);
 
-module.exports = Book;
+module.exports = FireStation;

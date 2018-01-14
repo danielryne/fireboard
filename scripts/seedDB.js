@@ -3,15 +3,15 @@ const db = require("../models");
 mongoose.Promise = global.Promise;
 
 // This file empties the Books collection and inserts the books below
-
+// !! Change The Mongo DB Local Host site !! - James//
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist",
+  process.env.MONGODB_URI || "mongodb://localhost/stafflist",
   {
     useMongoClient: true
   }
 );
-
-const bookSeed = [
+// !! bookSeed needs renaming along with the Content !! - James//
+const staffSeed = [
   {
     title: "The Dead Zone",
     author: "Stephen King",
@@ -126,9 +126,9 @@ const bookSeed = [
   }
 ];
 
-db.Book
+db.Staff
   .remove({})
-  .then(() => db.Book.collection.insertMany(bookSeed))
+  .then(() => db.Staff.collection.insertMany(staffSeed))
   .then(data => {
     console.log(data.insertedIds.length + " records inserted!");
     process.exit(0);

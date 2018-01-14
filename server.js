@@ -16,8 +16,11 @@ app.use(routes);
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
+
+
+//!!Change the Mongo Db Local Host!!-James//
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist",
+  process.env.MONGODB_URI || "mongodb://localhost/stafflist",
   {
     useMongoClient: true
   }

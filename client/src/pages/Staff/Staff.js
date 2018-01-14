@@ -1,3 +1,5 @@
+// keep this page change for firestation and staff //
+
 import React, { Component } from "react";
 import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
@@ -7,29 +9,31 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-class Books extends Component {
+class Staff extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    staff: [],
+    name: "",
+    station: "",
+    email: "",
+    status: "",
+    notes: "",
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadStaff();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadStaff = () => {
+    API.getStaff()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ staff: res.data, name: "", station: "", email: "", notes: "", })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteStaff = id => {
+    API.deleteStaff(id)
+      .then(res => this.loadStaff())
       .catch(err => console.log(err));
   };
 
@@ -42,17 +46,17 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
+    if (this.state.name && this.state.station) {
       API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        title: this.state.name,
+        author: this.state.station,
+        synopsis: this.state.email
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadStaff())
         .catch(err => console.log(err));
     }
   };
-
+// THIS STILL NEEDS CHANGING -James //
   render() {
     return (
       <Container fluid>
@@ -115,4 +119,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Staff;
