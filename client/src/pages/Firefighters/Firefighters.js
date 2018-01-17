@@ -7,29 +7,29 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-class Books extends Component {
+class Firefighters extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    firefighters: [],
+    name: "",
+    working: "",
+    notes: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadFirefighters();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadFirefighters = () => {
+    API.getFirefighters()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ firefighters: res.data, name: "", working: "", notes: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteFirefighter = id => {
+    API.deleteFirefighter(id)
+      .then(res => this.loadFirefighters())
       .catch(err => console.log(err));
   };
 
@@ -42,13 +42,13 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+    if (this.state.name && this.state.working) {
+      API.saveFirefighter({
+        name: this.state.name,
+        working: this.state.working,
+        notes: this.state.notes
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadFirefighters())
         .catch(err => console.log(err));
     }
   };
@@ -59,49 +59,49 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>What Firefighters Should I Read?</h1>
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
+                value={this.state.name}
                 onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
+                name="name"
+                placeholder="Name (required)"
               />
               <Input
-                value={this.state.author}
+                value={this.state.working}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="working"
+                placeholder="Is working (required)"
               />
               <TextArea
-                value={this.state.synopsis}
+                value={this.state.notes}
                 onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="notes"
+                placeholder="Notes (Optional)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.working && this.state.name)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Submit Firefighter
               </FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Firefighters On My List</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.firefighters.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.firefighters.map(firefighter => (
+                  <ListItem key={firefighter._id}>
+                    <Link to={"/firefighters/" + firefighter._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {firefighter.name} by {firefighter.working}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteFirefighter(firefighter._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -115,4 +115,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Firefighters;
