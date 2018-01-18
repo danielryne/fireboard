@@ -1,3 +1,4 @@
 module.exports = {
-  Firefighter: require("./firefighter")
+  Firefighter: require("./firefighter"),
+  Firestation: require("./firestation")
 };

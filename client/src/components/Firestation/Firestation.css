@@ -1,0 +1,29 @@
+#firestation {
+  border: 2px solid lightgray;
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+  box-shadow: 4px 4px 10px grey;
+  transition: all .1s ease-in-out;
+  text-align: center;
+  float: left;
+ }
+
+#stationName {
+  font-size: 24px; 
+  line-height: 10%;
+}
+
+ #staffCount, #staffMin {
+  font-size: 12px; 
+  line-height: 25%;
+ }
+
+#firestation:hover {
+  box-shadow: 8px 8px 20px gray;
+  transform: scale(1.1);
+}
+
+#firestation:active {
+  transform: translate(1px, 1px);
+}

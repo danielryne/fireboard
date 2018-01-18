@@ -1,0 +1,17 @@
+#staffsmall {
+  border: 2px solid lightgray;
+  margin: 5px;
+  float: left;
+ }
+
+.staff-name {
+  font-size: 14px; 
+}
+
+.staff-station{
+  font-size: 10px; 
+}
+
+#assignbutton {
+  line-height: 50%;
+}

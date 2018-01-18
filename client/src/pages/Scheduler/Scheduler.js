@@ -1,21 +1,77 @@
-import React from "react";
-import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
+import React, { Component } from "react";
+import API from "../../utils/API";
+import Wrapper from "../../components/Wrapper";
+import StaffContainer from "../../components/StaffContainer";
+import StaffSmall from "../../components/StaffSmall";
+import StationContainer from "../../components/StationContainer";
+import Firestation from "../../components/Firestation";
 
-const NoMatch = () =>
-  <Container fluid>
-    <Row>
-      <Col size="md-12">
-        <Jumbotron>
-          <h1>404 Page Not Found</h1>
-          <h1>
-            <span role="img" aria-label="Face With Rolling Eyes Emoji">
-              🙄
-            </span>
-          </h1>
-        </Jumbotron>
-      </Col>
-    </Row>
-  </Container>;
 
-export default NoMatch;
+// Starts the app 
+class Scheduler extends Component {
+
+state = {
+  staff: [],
+  stations: []
+};
+
+componentDidMount() {
+  this.loadFirefighters();
+  this.loadFirestations();
+}
+
+loadFirefighters = () => {
+  API.getFirefighters()
+    .then(res =>
+      this.setState({ staff: res.data })
+    )
+    .catch(err => console.log(err));
+};
+
+loadFirestations = () => {
+  API.getFirestations()
+    .then(res =>
+      this.setState({ stations: res.data })
+    )
+    .catch(err => console.log(err));
+};
+
+  // Renders the actual application in JSX 
+  render() {
+
+    return (
+      <Wrapper>
+
+        {/* Calls Conatiner for staff */} 
+        <StaffContainer>
+            {this.state.staff.map((staff, index) => (
+                <StaffSmall
+                  key={`${staff.id}-${index}`}
+                  id={staff.id}
+                  name={staff.name}
+                  station={staff.station}
+                />
+            ))}
+        </StaffContainer>
+
+        {/* Call sConatiner for Stations */}        
+        <StationContainer>
+            {this.state.stations.map(firestation => (
+                <Firestation
+                  key={firestation.id}
+                  id={firestation.id}
+                  name={firestation.name}
+                  staffMin={firestation.staffMin}
+                  staffCount={firestation.staffCount}
+                  currentStaff={firestation.currentStaff}
+                />
+
+            ))}
+          </StationContainer>
+
+      </Wrapper>
+    );
+  }
+}
+
+export default Scheduler;
