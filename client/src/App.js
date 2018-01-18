@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Firefighters from "./pages/Firefighters";
 import Detail from "./pages/Detail";
 import Home from "./pages/Home";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Working from "./pages/Working"
 import Scheduler from "./pages/Scheduler";
 import NoMatch from "./pages/NoMatch";

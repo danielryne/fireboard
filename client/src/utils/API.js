@@ -14,7 +14,7 @@ export default {
     return axios.delete("/api/firefighters/" + id);
   },
   // Saves a firefighter to the database
-  saveFirefighter: function(bookData) {
+  saveFirefighter: function(firefighterData) {
     return axios.post("/api/firefighters", firefighterData);
   }
 };
