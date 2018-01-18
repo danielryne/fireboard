@@ -1,0 +1,13 @@
+#stationcontainer {
+  width: 70%;
+  border: 3px solid grey;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+}
+
+.title {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
