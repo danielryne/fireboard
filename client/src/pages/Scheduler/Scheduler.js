@@ -6,35 +6,34 @@ import StaffSmall from "../../components/StaffSmall";
 import StationContainer from "../../components/StationContainer";
 import Firestation from "../../components/Firestation";
 
-
 // Starts the app 
 class Scheduler extends Component {
 
-state = {
-  staff: [],
-  stations: []
-};
+  state = {
+    staff: [],
+    stations: []
+  };
 
-componentDidMount() {
-  this.loadFirefighters();
-  this.loadFirestations();
-}
+  componentDidMount() {
+    this.loadFirefighters();
+    this.loadFirestations();
+  }
 
-loadFirefighters = () => {
-  API.getFirefighters()
-    .then(res =>
-      this.setState({ staff: res.data })
-    )
-    .catch(err => console.log(err));
-};
+  loadFirefighters = () => {
+    API.getFirefighters()
+      .then(res =>
+        this.setState({ staff: res.data })
+      )
+      .catch(err => console.log(err));
+  };
 
-loadFirestations = () => {
-  API.getFirestations()
-    .then(res =>
-      this.setState({ stations: res.data })
-    )
-    .catch(err => console.log(err));
-};
+  loadFirestations = () => {
+    API.getFirestations()
+      .then(res =>
+        this.setState({ stations: res.data })
+      )
+      .catch(err => console.log(err));
+  };
 
   // Renders the actual application in JSX 
   render() {
