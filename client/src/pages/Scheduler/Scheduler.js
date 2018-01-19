@@ -61,8 +61,8 @@ class Scheduler extends Component {
                   id={firestation.id}
                   name={firestation.name}
                   staffMin={firestation.staffMin}
-                  staffCount={firestation.staffCount}
-                  currentStaff={firestation.currentStaff}
+                  staffCount={firestation.staff.length}
+                  currentStaff={firestation.staff}
                 />
 
             ))}
