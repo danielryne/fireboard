@@ -5,11 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.Firestation
       .find(req.query)
-      .populate({
-        path: 'staff',
-        match: 'station',
-        select: 'name'
-      })
+      .populate('staff')
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
