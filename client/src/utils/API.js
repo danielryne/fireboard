@@ -28,5 +28,8 @@ export default {
  },
  saveFirestation: function(firestationData) {
    return axios.post("/api/firestations", firestationData);
+ },
+ updateFirestation: function(id, staffName) {
+ 	return axios.put("/api/firestations" + id); 
  }
 };
