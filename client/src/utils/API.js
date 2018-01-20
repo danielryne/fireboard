@@ -17,6 +17,9 @@ export default {
  saveFirefighter: function(firefighterData) {
    return axios.post("/api/firefighters", firefighterData);
  },
+ updateFirefighter: function(fireFighterId, firefighterData) {
+ 	return axios.put("/api/firefighters/" + fireFighterId, firefighterData);
+ }, 
  getFirestations: function() {
    return axios.get("/api/firestations");
  },

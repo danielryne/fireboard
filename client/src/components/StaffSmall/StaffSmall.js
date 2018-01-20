@@ -2,11 +2,17 @@ import React from "react";
 import "./StaffSmall.css";
 import { Dropdown, Button, Menu } from 'semantic-ui-react';
 
-const options = [
-  { key: 1, text: 'Station 1', value: 1 },
-  { key: 2, text: 'Station 2', value: 2 },
-  { key: 3, text: 'Station 3', value: 3 },
-]
+const keyOptions = (stationsArray) => {
+	
+	let options = [];
+
+	for (var i = 0; i < stationsArray.length; i++){
+		options.push({ key: i, text: stationsArray[i].name, value: stationsArray[i].name }); 
+	}
+
+	return options; 
+
+}
 
 const Staff1 = props => (
 
@@ -16,7 +22,7 @@ const Staff1 = props => (
     <p className="staff-station">Current Station: {props.station}</p>
 
   <Menu size="tiny" compact>
-    <Dropdown text='Assign Station' options={options} simple item />
+    <Dropdown text='Assign Station' onChange={(event, data) => props.updateFireFighter(props.id, data.value)} options={keyOptions(props.firestations)} simple item />
   </Menu>
 
 </Button>
