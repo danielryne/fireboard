@@ -11,6 +11,6 @@ router
   .route("/:id")
   .get(firefightersController.findById)
   .put(firefightersController.update)
-  .delete(firefightersController.remove);
-
+  .delete(firefightersController.remove); 
+  
 module.exports = router;

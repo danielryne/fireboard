@@ -3,7 +3,6 @@ import { Button, Header, Modal } from 'semantic-ui-react';
 import "./Firestation.css";
 
 
-
 const colorPicker = (min, actual) => {
 
   var color = "green"; 
@@ -19,9 +18,9 @@ const colorPicker = (min, actual) => {
 const Firestation = props => (
 <div>
 	<Modal size="tiny" trigger={
-  		<Button color={colorPicker(props.staffMin, props.staffCount)} id="firestation">
+  		<Button color={colorPicker(props.staffMin, props.currentStaff.length)} id="firestation">
     	  	<p id="stationname">{props.name}</p>
-    	  	<p id="staffCount"> Staff Count: {props.staffCount}</p>
+    	  	<p id="staffCount"> Staff Count: {props.currentStaff.length}</p>
       		<p id="staffMin">Required: {props.staffMin}</p>
     	</Button>
   	}
