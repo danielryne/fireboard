@@ -1,21 +1,27 @@
 import React from 'react';
-import { Button, Input} from 'antd';
+import { Button, Input, Checkbox, Form } from 'antd';
 import { graphql } from 'react-apollo';
-import Register from './Register.js';
 import gql from 'graphql-tag';
 
-class Login extends React.Component {
+class Register extends React.Component {
   state = {
+    username: '',
     email: '',
-    password: ''
+    password: '',
+    isAdmin: false,
   }
 
   onChange = (e) => {
+    if (e.target.name === 'isAdmin') {
+      this.setState({
+        [e.target.name]: e.target.checked,
+      });
+    } else {
       this.setState({
         [e.target.name]: e.target.value,
       });
     }
-  
+  }
 
   onSubmit = async () => {
     const response = await this.props.mutate({
@@ -26,7 +32,13 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <Form>
+//////////original code//////////
+        <Input
+          name='username'
+          placeholder='Username'
+          onChange={e => this.onChange(e)}
+          value={this.state.username} />
         <Input
           name='email'
           placeholder='Email'
@@ -38,18 +50,25 @@ class Login extends React.Component {
           type='password'
           onChange={e => this.onChange(e)}
           value={this.state.password} />
+        <Checkbox
+          name='isAdmin'
+          checked={this.state.isAdmin}
+          onChange={e => this.onChange(e)}
+        >
+          Admin?
+        </Checkbox>
         <br />
-        <Button onClick={() => this.onSubmit()} type="primary">Login</Button>
-      </div>
+        <Button onClick={() => this.onSubmit()} type="primary">Register</Button>
+      </Form>
     );
   }
 }
 
 const mutation = gql`
 mutation($username: String!, $email: String!, $password: String!, $isAdmin: Boolean) {
-  register(username: $username, email: $email, password: $password, isAdmin: $isAdmin) {
-    id
-  } 
+	register(username: $username, email: $email, password: $password, isAdmin: $isAdmin) {
+	  id
+	} 
 }
 `;
 
