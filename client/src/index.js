@@ -9,7 +9,6 @@ import { HttpLink } from 'apollo-link-http';
 import 'antd/dist/antd.css';
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Firefighters from "./pages/Firefighters";
 import Detail from "./pages/Detail";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -19,15 +18,11 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Register from "./pages/Login/Register";
 
-
-
 const client = new ApolloClient({
   link: new HttpLink(),
 
-
   cache: new InMemoryCache(),
 });
-
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -40,7 +35,6 @@ const App = () => (
           <Route exact path="/login" component={Login} />
           <Route exact path="/working" component={Working} />
           <Route exact path="/scheduler" component={Scheduler} />
-          <Route exact path="/firefighters" component={Firefighters} />
           <Route exact path="/firefighters/:id" component={Detail} />
           <Route component={NoMatch} />
         </Switch>

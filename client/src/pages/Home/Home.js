@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Button, Container, Divider, Grid, Header, Icon, Image, List, Menu, Segment, Visibility,
+  Button, Container, Grid, Header, Icon, Image, List, Segment,
 } from 'semantic-ui-react';
 import thumbsUpGuy from '../../assets/images/thumbs-up.png';
 
@@ -27,7 +27,7 @@ export default class HomepageLayout extends Component {
               />
               <Header
                 as='h2'
-                content='The easy way to put out your scheduling fires.'
+                content='The easy way to put out your scheduling fires!'
                 inverted
                 style={{ fontSize: '1.7em', fontWeight: 'normal' }}
               />
@@ -70,11 +70,10 @@ export default class HomepageLayout extends Component {
         
         <Segment style={{ padding: '8em 0em' }} vertical>
           <Container text>
-            <Header as='h3' style={{ fontSize: '2em' }}>Breaking The Grid, Grabs Your Attention</Header>
+            <Header as='h3' style={{ fontSize: '2em' }}>Breaking The Grind, Saving You Time</Header>
             <p style={{ fontSize: '1.33em' }}>
-              Instead of focusing on content creation and hard work, we have learned how to master the art of doing
-              nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic
-              and worth your attention.
+              Instead of focusing on whiteboard scheduling, we have learned how to master the art of scheduling
+              with little to no effort. Just click on your staff, schedule them at the station, and you're done! 
             </p>
             <Button as='a' size='large'>Learn More</Button>
             
@@ -89,7 +88,7 @@ export default class HomepageLayout extends Component {
                   <List link inverted>
                     <List.Item as='a'>Sitemap</List.Item>
                     <List.Item as='a'>Contact Us</List.Item>
-                    <List.Item as='a'>Religious Ceremonies</List.Item>
+                    <List.Item as='a'>Developers</List.Item>
                     <List.Item as='a'>Gazebo Plans</List.Item>
                   </List>
                 </Grid.Column>
@@ -97,14 +96,14 @@ export default class HomepageLayout extends Component {
                   <Header inverted as='h4' content='Services' />
                   <List link inverted>
                     <List.Item as='a'>Banana Pre-Order</List.Item>
-                    <List.Item as='a'>DNA FAQ</List.Item>
-                    <List.Item as='a'>How To Access</List.Item>
+                    <List.Item as='a'>All the Fires</List.Item>
+                    <List.Item as='a'>How To Party</List.Item>
                     <List.Item as='a'>Favorite X-Men</List.Item>
                   </List>
                 </Grid.Column>
                 <Grid.Column width={7}>
                   <Header as='h4' inverted>Footer Header</Header>
-                  <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                  <p>Extra space to hang out and be cool.</p>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
