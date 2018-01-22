@@ -1,35 +1,75 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
+import Wrapper from "../../components/Wrapper";
+import StaffContainer from "../../components/StaffContainer";
+import { Form } from 'semantic-ui-react';
+
+const options = [
+  { key: 'y', text: 'Yes', value: 'Active' },
+  { key: 'n', text: 'No', value: 'Inactive' },
+];
 
 class Detail extends Component {
   state = {
     firefighter: {}
   };
-  // When this component mounts, grab the firefighter with the _id of this.props.match.params.id
-  // e.g. localhost:3000/firefighters/599dcb67f0f16317844583fc
+  
   componentDidMount() {
-    API.getFirefighter(this.props.match.params.id)
-      .then(res => this.setState({ firefighter: res.data }))
-      .catch(err => console.log(err));
+    this.loadFirefighter();
   }
+
+  loadFirefighter = () => {
+    API.getFirefighter(this.props.match.params.id)
+      .then(res =>
+        this.setState({ firefighter: res.data })
+      )
+      .catch(err => console.log(err));
+  };
+
+  handleStatusInputChange = (event, {value}) => {
+    this.setState({
+      status: value
+    });
+  };
+
+  updateFirefighter = event => {
+    event.preventDefault();
+    API.updateFirefighter(this.state.firefighter._id, {
+      status: this.state.status
+      })
+      .then(this.loadFirefighter)
+      .catch(err => console.log(err));
+    };
 
   render() {
     return (
-      <div>
-              <h1>
-                {this.state.firefighter.name} by {this.state.firefighter.working}
-              </h1>
+      <Wrapper>
+        <StaffContainer>
+          <h2>
+            {this.state.firefighter.name} is {this.state.firefighter.status}
+          </h2>
+
+          <Form onSubmit={this.updateFirefighter}>
+            <Form.Field>
+              <Form.Select
+                id={this.state.firefighter._id}
+                value={this.state.status}
+                onChange={this.handleStatusInputChange}
+                fluid label='Working'
+                options={options}
+                placeholder='Working'
+              />
+            </Form.Field>
             
-            <article>
-              <h1>Notes</h1>
-              <p>
-                {this.state.firefighter.notes}
-              </p>
-            </article>
-         
-            <Link to="/">← Back to Working</Link>
-      </div>
+            <Form.Button content='Update Firefighter' />
+          </Form>
+          
+          <br/>
+
+          <Link to="/working">← Back to Staff Edit</Link>
+        </StaffContainer>
+      </Wrapper>
     );
   }
 }

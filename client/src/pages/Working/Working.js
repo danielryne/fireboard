@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Wrapper from "../../components/Wrapper";
 import StaffContainer from "../../components/StaffContainer";
 import CreateStaffContainer from "../../components/CreateStaffContainer";
-import { Select, Form, List } from 'semantic-ui-react';
+import { Form, List } from 'semantic-ui-react';
 
 const options = [
   { key: 'y', text: 'Yes', value: 'Active' },

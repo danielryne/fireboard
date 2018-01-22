@@ -20,13 +20,12 @@ class Scheduler extends Component {
     var fireFighterPromise = this.loadFirefighters();
     var fireStationPromise = this.loadFirestations(); 
 
-    Promise.all([fireFighterPromise, fireStationPromise]).then(this.staffToStations); 
-
+    Promise.all([fireFighterPromise, fireStationPromise]).then(this.staffToStations);
   }
 
   componentDidMount() {
     this.refreshData(); 
-  }
+  };
 
   // Loads firefighters from MongoDB
   loadFirefighters = () => {
