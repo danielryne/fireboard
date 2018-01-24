@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import {
-  Button, Container, Menu,
-} from 'semantic-ui-react';
+import { Button, Container, Menu } from 'semantic-ui-react';
 
 const Nav = () => (
   <Menu fixed='top' size='large'>
     <Container>
       <Menu.Item as={Link} to='/' active>Home</Menu.Item>
+      <Menu.Item as={Link} to='/working'>Staff</Menu.Item>
+      <Menu.Item as={Link} to='/scheduler'>Scheduler</Menu.Item>
       <Menu.Menu position='right'>
         <Menu.Item className='item'>
           <Button as={Link} to='/login'>Log in</Button>
