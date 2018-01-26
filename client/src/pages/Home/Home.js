@@ -31,7 +31,7 @@ export default class HomepageLayout extends Component {
                 inverted
                 style={{ fontSize: '1.7em', fontWeight: 'normal' }}
               />
-              <Button as={Link} to='/login' size='huge' color='orange'>
+              <Button as={Link} to='/scheduler' size='huge' color='orange'>
                 Get Started
                 <Icon name='right arrow' />
               </Button>
