@@ -6,44 +6,45 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString
-} = require('graphql');
+// const {
+//   graphql,
+//   GraphQLSchema,
+//   GraphQLObjectType,
+//   GraphQLString
+// } = require('graphql');
 
-var MyGraphQLSchema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'User',
-    fields: {
-      email: {
-        type: GraphQLString,
-        resolve: () => {
-          return 'email';
-        }
-      },
-      password: {
-        type: GraphQLString,
-        resolve: () => {
-          return 'password';
-        }
-      }
-    }
-  })
-});
+// //OLD GRAPHQL CODE//
+// var MyGraphQLSchema = new GraphQLSchema({
+//   query: new GraphQLObjectType({
+//     name: 'User',
+//     fields: {
+//       email: {
+//         type: GraphQLString,
+//         resolve: () => {
+//           return 'email';
+//         }
+//       },
+//       password: {
+//         type: GraphQLString,
+//         resolve: () => {
+//           return 'password';
+//         }
+//       }
+//     }
+//   })
+// });
 
-
+//OLD GRAPHQL CODE//
 
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/graphql', graphqlHTTP({
-  schema: MyGraphQLSchema,
-  graphiql: true
-}));
+// app.use('/graphql', graphqlHTTP({
+//   schema: MyGraphQLSchema,
+//   graphiql: true
+// }));
 // Serve up static assets
 app.use(express.static("client/build"));
 // Add routes, both API and view

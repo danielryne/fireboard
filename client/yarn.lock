@@ -2927,6 +2927,10 @@ graphql-anywhere@^4.1.1:
   dependencies:
     apollo-utilities "^1.0.4"
 
+graphql-tag@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.6.1.tgz#4788d509f6e29607d947fc47a40c4e18f736d34a"
+
 graphql@^0.12.3:
   version "0.12.3"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.12.3.tgz#11668458bbe28261c0dcb6e265f515ba79f6ce07"
@@ -6212,6 +6216,10 @@ table@^4.0.1:
     lodash "^4.17.4"
     slice-ansi "1.0.0"
     string-width "^2.1.1"
+
+tachyons@^4.9.1:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/tachyons/-/tachyons-4.9.1.tgz#f88d7059d6e53c833bf9351a26f18314c8fdc76a"
 
 tapable@^0.2.7:
   version "0.2.8"
