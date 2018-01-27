@@ -1,15 +1,15 @@
 import React from "react";
 import "./StaffContainer.css";
+import { Card } from 'semantic-ui-react';
 
 const Container = props => 
 	
-	<div id="staffcontainer">
+	<Card fluid>
+		<div style={{ overflow: "auto", height: "600px"}} id="staffcontainer">
+			<h1 style={{ textAlign: 'center' }}>Staff</h1>
+			{props.children}
 
-	<h1 className="title">Staff</h1>
-
-	{props.children}
-			
-
-	</div>;
+		</div>
+	</Card>
 
 export default Container;
