@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import Wrapper from "../../components/Wrapper";
-import StaffContainer from "../../components/StaffContainer";
+import EditStaffContainer from "../../components/EditStaffContainer";
 import CreateStaffContainer from "../../components/CreateStaffContainer";
-import { Form, List } from 'semantic-ui-react';
+import { Form, Checkbox, Table, Grid } from 'semantic-ui-react';
 
 const options = [
   { key: 'y', text: 'Yes', value: 'Active' },
@@ -29,12 +28,6 @@ class Firefighters extends Component {
       .then(res =>
         this.setState({ firefighters: res.data, name: "", station: "", status: "" })
       )
-      .catch(err => console.log(err));
-  };
-
-  deleteFirefighter = id => {
-    API.deleteFirefighter(id)
-      .then(res => this.loadFirefighters())
       .catch(err => console.log(err));
   };
 
@@ -76,59 +69,82 @@ class Firefighters extends Component {
     
     return (
       <Wrapper>
-        <CreateStaffContainer>
-          <Form onSubmit={this.handleFormSubmit}>
-            <Form.Field>
-              <Form.Input 
-                value={this.state.name}
-                onChange={this.handleNameInputChange}
-                fluid label='Name'
-                placeholder='Full Name'
-              />
-              <Form.Input
-                value={this.state.station}
-                onChange={this.handleStationInputChange}
-                fluid label='Station'
-                placeholder='Station Number'
-              />
-              <Form.Select
-                value={this.state.status}
-                onChange={this.handleStatusInputChange}
-                fluid label='Working'
-                options={options}
-                placeholder='Working'
-              />
-            </Form.Field>
-            
-            <Form.Button
-              content='Submit Firefighter'
-              disabled={!(this.state.name && this.state.station)}
-            />
-              
-          </Form>
-        </CreateStaffContainer>
-
-        <StaffContainer>
-          {this.state.firefighters.length ? (
-            <List>
-                {this.state.firefighters.map(firefighter => (
-                  <List.Item key={firefighter._id}>
-                    <Link to={"/firefighters/" + firefighter._id}>
-                      <strong>
-                        {firefighter.name} is {firefighter.status}
-                      </strong>
-                    </Link>
-                    <DeleteBtn
-                      style={{cursor: 'pointer'}}
-                      onClick={() => this.deleteFirefighter(firefighter._id)}
+        <Grid columns={2} padded>
+          <Grid.Row centered>
+            <Grid.Column width={4}>
+              <CreateStaffContainer>
+                <Form onSubmit={this.handleFormSubmit}>
+                  <Form.Field>
+                    <Form.Input 
+                      value={this.state.name}
+                      onChange={this.handleNameInputChange}
+                      fluid label='Name'
+                      placeholder='Full Name'
                     />
-                  </List.Item>
-                ))}
-            </List>    
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-        </StaffContainer>
+                    <Form.Input
+                      value={this.state.station}
+                      onChange={this.handleStationInputChange}
+                      fluid label='Station'
+                      placeholder='Station Number'
+                    />
+                    <Form.Select
+                      value={this.state.status}
+                      onChange={this.handleStatusInputChange}
+                      fluid label='Working'
+                      options={options}
+                      placeholder='Working'
+                    />
+                  </Form.Field>
+                  
+                  <Form.Button
+                    content='Submit Firefighter'
+                    disabled={!(this.state.name && this.state.station)}
+                  />    
+                </Form>
+              </CreateStaffContainer>
+            </Grid.Column>
+
+            <Grid.Column>
+              <EditStaffContainer>
+                {this.state.firefighters.length ? (
+                  <Table celled compact>
+                    <Table.Header fullWidth>
+                      <Table.Row>
+                        <Table.HeaderCell>Name</Table.HeaderCell>
+                        <Table.HeaderCell>Station</Table.HeaderCell>
+                        <Table.HeaderCell>Status</Table.HeaderCell>
+                      </Table.Row>
+                    </Table.Header>
+
+                    {this.state.firefighters.map(firefighter => (
+                      <Table.Body key={firefighter._id}>
+                        <Table.Row>
+                          <Table.Cell>
+                            <Link to={"/firefighters/" + firefighter._id}>
+                              <strong>
+                                {firefighter.name}
+                              </strong>
+                            </Link>
+                          </Table.Cell>
+                          <Table.Cell>
+                            {firefighter.station}
+                          </Table.Cell>
+                          <Table.Cell>
+                            {firefighter.status}
+                          </Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+
+                      
+                    ))}
+                  </Table>    
+                  ) : (
+                    <h3>No Results to Display</h3>
+                  )}
+              </EditStaffContainer>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Wrapper>
 
       
