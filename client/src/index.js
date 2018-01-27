@@ -3,44 +3,41 @@ import ReactDOM from "react-dom";
 import 'semantic-ui-css/semantic.min.css';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider } from 'react-apollo';
-import { HttpLink } from 'apollo-link-http';
+import { graphql, ApolloProvider } from 'react-apollo';
+// import { HttpLink } from 'apollo-link-http';
 
-import 'antd/dist/antd.css';
+import { createHttpLink } from 'apollo-link-http';
+import { ApolloLink } from 'apollo-link';
+import gql from 'graphql-tag';
+import 'tachyons';
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Detail from "./pages/Detail";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Working from "./pages/Working"
-import Scheduler from "./pages/Scheduler";
-import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
-import Register from "./pages/Login/Register";
+import App from "./App";
 
-const client = new ApolloClient({
-  link: new HttpLink(),
 
-  cache: new InMemoryCache(),
-});
+// __SIMPLE_API_ENDPOINT__ looks like: 'https://api.graph.cool/simple/v1/__SERVICE_ID__' 
+const httpLink = createHttpLink({ uri: 'https://api.graph.cool/simple/v1/cjcr5o6s31wn30153ka8dfsve' })
 
-const App = () => (
+const middlewareLink = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem('graphcoolToken')
+  const authorizationHeader = token ? `Bearer ${token}` : null
+  operation.setContext({
+    headers: {
+      authorization: authorizationHeader
+    }
+  })
+  return forward(operation)
+})
+
+const httpLinkWithAuthToken = middlewareLink.concat(httpLink)
+
+const client = new ApolloClient({ 
+  link: httpLinkWithAuthToken,
+  cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
+})
+
+ReactDOM.render(        
   <ApolloProvider client={client}>
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/working" component={Working} />
-          <Route exact path="/scheduler" component={Scheduler} />
-          <Route exact path="/firefighters/:id" component={Detail} />
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
-    </Router>
-  </ApolloProvider>
+    <App/>
+  </ApolloProvider>,
+  document.getElementById('root')
 );
-
-ReactDOM.render(<App />, document.getElementById('root'));
