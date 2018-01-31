@@ -15,6 +15,9 @@ class CreateLogin extends React.Component {
     return (
       <div className='w-100 pa4 flex justify-center'>
         <div style={{ maxWidth: 400 }} className=''>
+          <br>
+          <br>
+          <br>
           <input
             className='w-100 pa3 mv2'
             value={this.state.email}

@@ -41,6 +41,8 @@ const Nav = (props) => (
   </Menu>
 )
 
+export default class Navy extends Component {
+
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
