@@ -1,5 +1,8 @@
 #createStaffContainer {
+  width: 20%;
+  border: 3px solid grey;
   padding: 5px;
   margin: 5px;
+  float: left;
   align-content: center; 
 }

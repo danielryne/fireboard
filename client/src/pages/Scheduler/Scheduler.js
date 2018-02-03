@@ -5,7 +5,6 @@ import StaffContainer from "../../components/StaffContainer";
 import StaffSmall from "../../components/StaffSmall";
 import StationContainer from "../../components/StationContainer";
 import Firestation from "../../components/Firestation";
-import { Grid } from 'semantic-ui-react';
 
 // Starts the app 
 class Scheduler extends Component {
@@ -83,8 +82,6 @@ class Scheduler extends Component {
 
     return (
       <Wrapper>
-        <Grid columns={2} padded centered>
-          <Grid.Column width={3}>
 
         {/* Calls Conatiner for staff */} 
         <StaffContainer>
@@ -99,10 +96,7 @@ class Scheduler extends Component {
                 />
             ))}
         </StaffContainer>
-          </Grid.Column>
 
-
-          <Grid.Column width={10}>
         {/* Call sConatiner for Stations */}        
         <StationContainer>
             {Object.keys(this.state.stations).map((key) => (
@@ -116,8 +110,7 @@ class Scheduler extends Component {
 
             ))}
           </StationContainer>
-          </Grid.Column>
-        </Grid>
+
       </Wrapper>
     );
   }

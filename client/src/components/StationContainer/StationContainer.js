@@ -1,15 +1,14 @@
 import React from "react";
 import "./StationContainer.css";
-import { Card } from 'semantic-ui-react';
 
 const StationContainer = props => 
 	
-	<Card fluid>	
-		<div id="stationcontainer">
-			<h1 style={{ textAlign: 'center' }}>Fire Stations</h1>
-			{props.children}
+	<div className="col-7" id="stationcontainer">
 
-		</div>
-	</Card>
+	<h1 className="title">Stations</h1>
+
+	{props.children}
+
+	</div>;
 
 export default StationContainer;
