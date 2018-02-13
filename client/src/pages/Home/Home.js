@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Button, Container, Grid, Header, Icon, Image, List, Segment,
+  Button, Container, Grid, Header, Icon, Image, List, Segment
 } from 'semantic-ui-react';
 import thumbsUpGuy from '../../assets/images/thumbs-up.png';
 
@@ -21,7 +21,7 @@ export default class HomepageLayout extends Component {
             <Container text>
               <Header
                 as='h1'
-                content='FireBoard'
+                content='FsgnireBoard'
                 inverted
                 style={{ fontSize: '4em', fontWeight: 'normal', marginBottom: 0, marginTop: '3em' }}
               />
@@ -44,11 +44,13 @@ export default class HomepageLayout extends Component {
               <Grid.Column width={8}>
                 <Header as='h3' style={{ fontSize: '2em' }}>We Help Local Fire Departments</Header>
                 <p style={{ fontSize: '1.33em' }}>
-                  We can give your station superpowers to do things that you never thought possible! Schedule your staff with ease everymorning right from your computer.
+                  We can give your station superpowers to do things that you never thought possible!
+                  Schedule your staff with ease, everymorning, right from your computer.
                 </p>
-                <Header as='h3' style={{ fontSize: '2em' }}>If we want to write more here</Header>
+                <Header as='h3' style={{ fontSize: '2em' }}>It's Free, and Always Will Be</Header>
                 <p style={{ fontSize: '1.33em' }}>
-                  Yes that's right, more room to write.
+                  We love helping those who help us, so using the site is free.
+                  It is also updated by the open source community, so you will keeping seeing improvements to help your stations.
                 </p>
               </Grid.Column>
               <Grid.Column floated='right' width={6}>
@@ -73,7 +75,8 @@ export default class HomepageLayout extends Component {
             <Header as='h3' style={{ fontSize: '2em' }}>Breaking The Grind, Saving You Time</Header>
             <p style={{ fontSize: '1.33em' }}>
               Instead of focusing on whiteboard scheduling, we have learned how to master the art of scheduling
-              with little to no effort. Just click on your staff, schedule them at the station, and you're done! 
+              with little to no effort. Just click on your staff, schedule them at the station, and you're set!
+              Easily export your schedule as well, and send it to your staff.
             </p>
             <Button as='a' size='large'>Learn More</Button>
             

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import Wrapper from "../../components/Wrapper";
-import StaffContainer from "../../components/StaffContainer";
-import { Form } from 'semantic-ui-react';
+import DeleteBtn from "../../components/DeleteBtn";
+import DetailStaffContainer from "../../components/DetailStaffContainer";
+import { Form, Grid, Button } from 'semantic-ui-react';
 
 const options = [
   { key: 'y', text: 'Yes', value: 'Active' },
@@ -27,6 +28,14 @@ class Detail extends Component {
       .catch(err => console.log(err));
   };
 
+  loadFirefighters = () => {
+    API.getFirefighters()
+      .then(res =>
+        this.setState({ firefighters: res.data, name: "", station: "", status: "" })
+      )
+      .catch(err => console.log(err));
+  };
+
   handleStatusInputChange = (event, {value}) => {
     this.setState({
       status: value
@@ -40,35 +49,52 @@ class Detail extends Component {
       })
       .then(this.loadFirefighter)
       .catch(err => console.log(err));
-    };
+  };
+
+  deleteFirefighter = id => {
+    API.deleteFirefighter(id)
+      .then(res => this.loadFirefighters())
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
       <Wrapper>
-        <StaffContainer>
-          <h2>
-            {this.state.firefighter.name} is {this.state.firefighter.status}
-          </h2>
+        <Grid columns={3} padded centered>
+          <Grid.Column>
+            <DetailStaffContainer>
+              <h2 style={{ textAlign: 'center' }}>
+                {this.state.firefighter.name} is Currently {this.state.firefighter.status}
+              </h2>
 
-          <Form onSubmit={this.updateFirefighter}>
-            <Form.Field>
-              <Form.Select
-                id={this.state.firefighter._id}
-                value={this.state.status}
-                onChange={this.handleStatusInputChange}
-                fluid label='Working'
-                options={options}
-                placeholder='Working'
-              />
-            </Form.Field>
-            
-            <Form.Button content='Update Firefighter' />
-          </Form>
-          
-          <br/>
-
-          <Link to="/working">← Back to Staff Edit</Link>
-        </StaffContainer>
+              <Form onSubmit={this.updateFirefighter}>
+                <Form.Field>
+                  <Form.Select
+                    id={this.state.firefighter._id}
+                    value={this.state.status}
+                    onChange={this.handleStatusInputChange}
+                    options={options}
+                    placeholder='Working'
+                  />
+                </Form.Field>
+                
+                <div style={{ textAlign: 'center' }}>
+                  <Button content='Update Firefighter' />
+                  <Link to="/working">
+                    <Button
+                      content='Delete Firefighter'
+                      onClick={() => this.deleteFirefighter(this.state.firefighter._id)}
+                    />
+                  </Link>
+                </div>
+              </Form>
+              
+              <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                <Link to="/working">← Back to Staff Edit</Link>
+              </div>
+            </DetailStaffContainer>
+          </Grid.Column>
+        </Grid>
       </Wrapper>
     );
   }
